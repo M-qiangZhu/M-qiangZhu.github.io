@@ -1,4 +1,3 @@
-// Shared bilingual content for the website, CV, and editor.
 window.PORTFOLIO = {
   "translations": {
     "zh": {
@@ -740,7 +739,7 @@ window.PORTFOLIO = {
       "name": "朱明强",
       "alternateName": "Mingqiang Zhu",
       "headline": "AI 应用工程 · 量子线路综合与优化",
-      "summary": "我是朱明强，在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。",
+      "summary": "本人目前在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。",
       "background": "硕士就读于南通大学计算机技术专业，研究物理约束感知的 CNOT 量子线路综合与优化。现在，我把算法分析与系统工程经验用于客服、运维、审计、教育等场景。"
     },
     "en": {
