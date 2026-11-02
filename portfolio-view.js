@@ -1,0 +1,20 @@
+/* Shared presentation for the public homepage and printable CV. */
+(function () {
+  'use strict';
+  const C=window.PortfolioCore,E=C.escape,P=C.paragraph;
+  const UI={zh:{about:'个人简介',experience:'工作经历',skills:'技术能力',projects:'项目经历',papers:'学术论文',patents:'专利申请',credentials:'专业认证',legend:'† 同等贡献（共同第一作者）；* 通讯作者。',researchCode:'研究代码',application:'申请号',inventors:'程学云、朱明强等'},en:{about:'Profile',experience:'Experience',skills:'Skills',projects:'Projects',papers:'Publications',patents:'Patent applications',credentials:'Credentials',legend:'† Equal contribution (co-first authors); * Corresponding author.',researchCode:'Research code',application:'Application no.',inventors:'Xueyun Cheng, Mingqiang Zhu, et al.'}};
+  function section(id,title,body){return `<section id="${id}" class="content-section"><h2>${E(title)}</h2>${body}</section>`;}
+  function experience(data,lang){return C.sortDated(data.experience).map(p=>`<article class="entry dated-entry"><div class="entry-date">${E(C.dateRange(p,lang))}</div><div><h3>${E(p[lang].organization)} <span class="inline-role">${E(p[lang].role)}</span></h3><p>${P(p[lang].body)}</p></div></article>`).join('');}
+  function skills(data,lang){return `<dl class="skill-list">${data.expertise.map(p=>`<div><dt>${E(p[lang][0])}</dt><dd>${E(p[lang][1])} <span class="muted">${E(p.tools)}</span></dd></div>`).join('')}</dl>`;}
+  function projects(items,lang){return C.sortDated(items).map(p=>`<article class="entry dated-entry" data-project-id="${E(p.id)}"><div class="entry-date">${E(C.dateRange(p,lang))}</div><div><h3>${E(p[lang].title)}</h3><p class="project-subtitle">${E(p[lang].subtitle)}</p><p class="entry-role">${E(p[lang].role)}</p><p>${P(p[lang].body)}</p>${p.tags.length?`<p class="entry-note">${p.tags.map(E).join(" · ")}</p>`:""}</div></article>`).join('');}
+  function papers(data,lang){return C.sortPapers(data.papers).map(p=>`<article class="entry dated-entry publication" data-paper-id="${E(p.id)}"><div class="entry-date">${E(C.dateLabel(p.published,lang))}</div><div><h3>${C.link(p.url,E(p.title))}</h3><p class="authors">${C.authorsHTML(p)}</p><p>${E(p.venue)} <span class="author-role">${E(C.authorRole(p,lang))}</span></p><p class="paper-description">${E(p.description[lang])}</p><p class="entry-note">${E(p.note[lang])}${p.online?` · ${lang==='zh'?'在线发表：':'Online publication: '}${E(C.dateLabel(p.online,lang))}`:""}</p></div></article>`).join('')+`<p class="legend">${E(UI[lang].legend)}</p>`;}
+  function patents(data,lang){return C.sortDated(data.patents.map(p=>({...p,start:p.applied,end:p.applied}))).map(p=>`<article class="entry dated-entry"><div class="entry-date">${E(C.dateLabel(p.applied,lang))}</div><div><h3>${E(p[lang])}</h3><p class="muted">${E(UI[lang].application)} ${E(p.number)}${p.inventors?.[lang]?` · ${E(p.inventors[lang])}`:""}</p></div></article>`).join('');}
+  function credentials(data,lang){return `<ul class="credential-list">${C.sortDated(data.credentials.map(p=>({...p,start:p.date,end:p.date}))).map(p=>`<li><strong>${E(p[lang].title)}</strong><span>${E(p[lang].subtitle)}</span>${p.date?`<time>${E(C.dateLabel(p.date,lang))}</time>`:''}</li>`).join('')}</ul>`;}
+  function contacts(data,lang){let html=C.link(data.profile.github,'GitHub');if(data.profile.email)html+=`<a href="mailto:${E(data.profile.email)}">${E(data.profile.email)}</a>`;if(data.profile.researchCode)html+=C.link(data.profile.researchCode,E(UI[lang].researchCode));return html;}
+  function sections(data,lang,options={}){
+    const selected=options.sections||['about','experience','skills','projects','papers','patents','credentials'];
+    const render={about:()=>`<p>${P(data.profile[lang].summary)}</p><p>${P(data.profile[lang].background)}</p>`,experience:()=>experience(data,lang),skills:()=>skills(data,lang),projects:()=>projects(options.projects||data.projects,lang),papers:()=>papers(data,lang),patents:()=>patents(data,lang),credentials:()=>credentials(data,lang)};
+    return selected.map(id=>section(id,UI[lang][id],render[id]())).join('');
+  }
+  window.PortfolioView={UI,sections,projects,papers,contacts};
+})();

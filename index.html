@@ -1,102 +1,16 @@
 <!doctype html>
 <html lang="zh-CN" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light dark">
-  <meta name="description" content="朱明强的个人主页：AI 应用开发、大模型私有化部署、智能体工程与 CNOT 量子线路综合研究。">
-  <meta property="og:title" content="朱明强 · Mingqiang Zhu">
-  <meta property="og:description" content="AI 应用工程实践与量子线路优化研究。AI engineering & quantum circuit research.">
-  <meta property="og:type" content="website">
-  <title>朱明强 · Mingqiang Zhu</title>
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <script>try{const l=localStorage.getItem('mz-language');if(l==='en')document.documentElement.lang='en';const t=localStorage.getItem('mz-theme');document.documentElement.dataset.theme=t|| (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}</script>
-  <link rel="stylesheet" href="./styles.css">
-  <script src="./content.js" defer></script>
-  <script src="./app.js" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark">
+<meta name="description" content="朱明强：AI 应用工程、智能体开发与量子线路综合研究。"><meta property="og:title" content="朱明强 · Mingqiang Zhu"><meta property="og:description" content="AI engineering and quantum circuit research."><meta property="og:type" content="website">
+<title>朱明强 · Mingqiang Zhu</title><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css?v=20261102">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('mz-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{}</script>
+<script src="./content.js?v=20261102" defer></script><script src="./portfolio-core.js?v=20261102" defer></script><script src="./portfolio-view.js?v=20261102" defer></script><script src="./app.js?v=20261102" defer></script>
 </head>
-<body>
-  <a class="skip-link" href="#main" data-i18n="skip">跳到正文</a>
-  <header class="site-header">
-    <div class="nav-shell">
-      <a class="brand" href="#home" aria-label="Mingqiang Zhu"><span class="monogram">MZ<span>↗</span></span><span class="brand-name" data-i18n="name">朱明强</span></a>
-      <nav class="desktop-nav" aria-label="主导航" data-i18n-aria="navigation">
-        <a href="#about" data-i18n="nav.about">关于</a>
-        <a href="#projects" data-i18n="nav.projects">项目</a>
-        <a href="#research" data-i18n="nav.research">科研</a>
-        <a href="#credentials" data-i18n="nav.credentials">认证</a>
-      </nav>
-      <div class="nav-actions">
-        <div class="language-switch" role="group" aria-label="语言" data-i18n-aria="language">
-          <button type="button" data-language="zh" lang="zh-CN" aria-pressed="true">中</button>
-          <button type="button" data-language="en" lang="en" aria-pressed="false">EN</button>
-        </div>
-        <button class="theme-toggle" type="button" aria-label="切换深色模式" data-theme-toggle><span aria-hidden="true">◐</span></button>
-        <button class="menu-toggle" type="button" aria-controls="mobile-nav" aria-expanded="false" data-i18n-aria="menu"><span aria-hidden="true">☰</span></button>
-      </div>
-    </div>
-    <nav id="mobile-nav" class="mobile-nav" hidden aria-label="手机导航" data-i18n-aria="navigation">
-      <a href="#about" data-i18n="nav.about">关于</a><a href="#projects" data-i18n="nav.projects">项目</a><a href="#research" data-i18n="nav.research">科研</a><a href="#credentials" data-i18n="nav.credentials">认证</a>
-    </nav>
-  </header>
-
-  <main id="main">
-    <section class="hero section-shell" id="home" aria-labelledby="hero-heading">
-      <div class="hero-copy">
-        <p class="eyebrow">AI ENGINEERING / QUANTUM COMPUTING</p>
-        <h1 id="hero-heading"><span data-i18n="name">朱明强</span><span class="name-latin" data-i18n="alternateName">Mingqiang Zhu</span></h1>
-        <p class="hero-summary" data-i18n="hero.summary">研究算法，也让 AI 在实际业务中落地。</p>
-        <div class="hero-links"><a class="button button-primary" href="#projects"><span data-i18n="hero.cta">查看项目经历</span><span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/M-qiangZhu" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
-      </div>
-      <figure class="research-figure">
-        <div class="figure-header"><span data-i18n="figure.title">连接约束下的线路综合</span><span class="figure-code">CNOT</span></div>
-        <svg class="circuit" viewBox="0 0 550 350" role="img" aria-labelledby="circuit-title circuit-desc">
-          <title id="circuit-title">CNOT 最近邻综合示意</title>
-          <desc id="circuit-desc">一个从 q0 控制 q2 的 CNOT 门，等价分解为四个仅在相邻量子位间执行的 CNOT 门。</desc>
-          <defs><pattern id="circuit-grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M 22 0 L 0 0 0 22" fill="none" class="grid-line" stroke-width=".7"/></pattern></defs>
-          <rect width="550" height="350" fill="url(#circuit-grid)"/>
-          <g class="circuit-label"><text x="28" y="36" data-i18n="figure.logical">逻辑线路</text><text x="245" y="36" data-i18n="figure.physical">最近邻分解</text></g>
-          <g class="wires" fill="none" stroke-width="1.6"><path d="M54 95H174M54 175H174M54 255H174M270 95H510M270 175H510M270 255H510"/></g>
-          <g class="qubit-label"><text x="21" y="100">q₀</text><text x="21" y="180">q₁</text><text x="21" y="260">q₂</text><text x="236" y="100">q₀</text><text x="236" y="180">q₁</text><text x="236" y="260">q₂</text></g>
-          <g class="gate" stroke-width="2" fill="none"><path d="M112 95V255"/><circle cx="112" cy="255" r="13"/><path d="M99 255H125M112 242V268"/><path d="M304 95V175M361 175V255M418 95V175M475 175V255"/><circle cx="304" cy="175" r="13"/><path d="M291 175H317M304 162V188"/><circle cx="361" cy="255" r="13"/><path d="M348 255H374M361 242V268"/><circle cx="418" cy="175" r="13"/><path d="M405 175H431M418 162V188"/><circle cx="475" cy="255" r="13"/><path d="M462 255H488M475 242V268"/></g>
-          <g class="controls"><circle cx="112" cy="95" r="5"/><circle cx="304" cy="95" r="5"/><circle cx="361" cy="175" r="5"/><circle cx="418" cy="95" r="5"/><circle cx="475" cy="175" r="5"/></g>
-          <text class="equivalence" x="195" y="182">≡</text>
-          <g class="figure-annotation"><text x="28" y="322" data-i18n="figure.caption">相同逻辑，适配物理连接。</text></g>
-        </svg>
-        <figcaption><span data-i18n="figure.topic">量子线路综合与优化</span><a href="#research" data-i18n="figure.link">了解研究 ↗</a></figcaption>
-      </figure>
-    </section>
-
-    <section class="about-section section-shell" id="about" aria-labelledby="about-heading">
-      <div class="about-heading"><h2 id="about-heading" data-i18n="about.heading">从算法研究，走向工程实践。</h2><p data-i18n="about.intro">关注模型、数据与业务流程之间的连接。</p></div>
-      <div class="about-body">
-        <div class="bio"><p data-i18n="about.bio">我是朱明强，在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。</p><p data-i18n="about.background">硕士就读于南通大学计算机技术专业，研究物理约束感知的 CNOT 量子线路综合与优化。现在，我把算法分析与系统工程经验用于客服、运维、审计、教育等场景。</p><div class="work-note"><span class="work-date" data-i18n="about.dates">2023.07 至今</span><div><strong data-i18n="about.company">中国电信南通分公司</strong><span data-i18n="about.role">AI 技术经理</span></div></div></div>
-        <div class="expertise" id="expertise"></div>
-      </div>
-    </section>
-
-    <section class="projects-section section-shell" id="projects" aria-labelledby="projects-heading">
-      <div class="section-intro"><h2 id="projects-heading" data-i18n="projects.heading">项目经历</h2><p data-i18n="projects.intro">从需求拆解、数据处理到部署验证，让技术接入真实工作流程。</p></div>
-      <div class="project-toolbar"><div class="filters" role="group" aria-label="项目分类" data-i18n-aria="projects.filters"><button type="button" data-filter="all" aria-pressed="true" data-i18n="filter.all">全部</button><button type="button" data-filter="ai" aria-pressed="false" data-i18n="filter.ai">AI 应用</button><button type="button" data-filter="data" aria-pressed="false" data-i18n="filter.data">数据与工程</button><button type="button" data-filter="quantum" aria-pressed="false" data-i18n="filter.quantum">量子研究</button></div><span class="project-count" id="project-count" role="status" aria-live="polite"></span></div>
-      <div id="project-list" class="project-list"></div>
-      <p class="timeline-note" data-i18n="projects.note">按年份倒序；同年项目不代表月份先后。</p>
-    </section>
-
-    <section class="research-section section-shell" id="research" aria-labelledby="research-heading">
-      <div class="section-intro"><h2 id="research-heading" data-i18n="research.heading">科研成果</h2><p data-i18n="research.intro">物理约束感知的 CNOT 量子线路综合、映射与优化。</p></div>
-      <div class="research-overview"><span class="research-statement" data-i18n="research.statement">在连接与噪声约束下，寻找更好的量子线路。</span><a class="text-link" href="https://github.com/M-qiangZhu/Physical-constraint-aware-CNOT-quantum-circuit-synthesis-and-optimization" target="_blank" rel="noopener noreferrer"><span data-i18n="research.code">研究代码</span> <span aria-hidden="true">↗</span></a></div>
-      <h3 class="subheading" data-i18n="research.papers">学术论文</h3>
-      <div class="publication-list" id="publication-list"></div>
-      <p class="timeline-note" data-i18n="research.note">按正式出版年份倒序，保留原始题名与作者顺序。</p>
-      <details class="patents"><summary><span data-i18n="research.patents">专利申请</span><span class="summary-count">03</span><span class="expand-mark" aria-hidden="true">+</span></summary><div id="patent-list"></div></details>
-    </section>
-
-    <section class="credentials-section section-shell" id="credentials" aria-labelledby="credentials-heading"><h2 id="credentials-heading" data-i18n="credentials.heading">专业认证</h2><div class="credential-list" id="credential-list"></div></section>
-
-    <section class="contact-section section-shell" id="contact" aria-labelledby="contact-heading"><div><h2 id="contact-heading" data-i18n="contact.heading">交流想法，一起探索。</h2><p data-i18n="contact.body">欢迎交流 AI 应用、智能体工程与量子线路研究。</p></div><a class="button button-primary" href="https://github.com/M-qiangZhu" target="_blank" rel="noopener noreferrer"><span data-i18n="contact.cta">在 GitHub 找到我</span><span aria-hidden="true">↗</span></a></section>
-  </main>
-
-  <footer class="site-footer section-shell"><span>© <span id="copyright-year">2026</span> <span data-i18n="name">朱明强</span></span><a href="#home"><span data-i18n="footer.top">回到顶部</span> <span aria-hidden="true">↑</span></a></footer>
-  <noscript><div class="noscript-note">此页面需要 JavaScript 显示完整的双语项目与科研内容。Please enable JavaScript to view the bilingual portfolio.</div></noscript>
-</body>
-</html>
+<body><a class="skip-link" href="#main">跳到正文 / Skip to content</a>
+<div class="page-shell"><header class="site-header"><a class="site-name" href="./index.html">朱明强</a><nav aria-label="页面导航"><a href="#experience" data-label="experience">工作</a><a href="#projects" data-label="projects">项目</a><a href="#papers" data-label="papers">论文</a><a href="./cv.html" id="cv-link">简历 / CV</a></nav><div class="header-tools"><button type="button" id="language-toggle">English</button><button type="button" id="theme-toggle">深色</button></div></header>
+<div id="draft-banner" class="notice" hidden role="status"></div>
+<main id="main"><header class="profile-header"><h1 id="profile-name">朱明强 <span>Mingqiang Zhu</span></h1><p id="profile-headline">AI 应用工程 · 量子线路综合与优化</p><div id="profile-links" class="profile-links"></div></header><div id="page-content"></div></main>
+<footer class="site-footer"><span id="copyright"></span><div><a href="./cv.html" id="footer-cv">简历</a><a href="./edit.html" id="editor-link">编辑资料</a><a href="#main" id="top-link">回到顶部</a></div></footer></div>
+<noscript><p>请启用 JavaScript 查看项目与论文。Please enable JavaScript to view this portfolio.</p></noscript>
+</body></html>

@@ -1,100 +1,771 @@
-'use strict';
-
-// Source: the owner's thesis, work/project document, and verified publisher records.
-// A missing project month, award date, or certificate level is intentionally not inferred.
+// Shared bilingual content for the website, CV, and editor.
 window.PORTFOLIO = {
-  translations: {
-    zh: {
-      name: '朱明强', alternateName: 'Mingqiang Zhu', skip: '跳到正文', navigation: '主导航', language: '语言', menu: '打开导航菜单',
-      'nav.about': '关于', 'nav.projects': '项目', 'nav.research': '科研', 'nav.credentials': '认证',
-      'hero.summary': '研究算法，也让 AI 在实际业务中落地。', 'hero.cta': '查看项目经历',
-      'figure.title': '连接约束下的线路综合', 'figure.logical': '逻辑线路', 'figure.physical': '最近邻分解', 'figure.caption': '相同逻辑，适配物理连接。', 'figure.topic': '量子线路综合与优化', 'figure.link': '了解研究 ↗',
-      'figure.a11yTitle': 'CNOT 最近邻综合示意', 'figure.a11yDesc': '一个从 q0 控制 q2 的 CNOT 门，等价分解为四个仅在相邻量子位间执行的 CNOT 门。',
-      'about.heading': '从算法研究，走向工程实践。', 'about.intro': '关注模型、数据与业务流程之间的连接。',
-      'about.bio': '我是朱明强，在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。',
-      'about.background': '硕士就读于南通大学计算机技术专业，研究物理约束感知的 CNOT 量子线路综合与优化。现在，我把算法分析与系统工程经验用于客服、运维、审计、教育等场景。',
-      'about.dates': '2023.07 至今', 'about.company': '中国电信南通分公司', 'about.role': 'AI 技术经理',
-      'projects.heading': '项目经历', 'projects.intro': '从需求拆解、数据处理到部署验证，让技术接入真实工作流程。', 'projects.filters': '项目分类', 'projects.note': '按年份倒序；同年项目不代表月份先后。',
-      'filter.all': '全部', 'filter.ai': 'AI 应用', 'filter.data': '数据与工程', 'filter.quantum': '量子研究',
-      'research.heading': '科研成果', 'research.intro': '物理约束感知的 CNOT 量子线路综合、映射与优化。', 'research.statement': '在连接与噪声约束下，寻找更好的量子线路。', 'research.code': '研究代码', 'research.papers': '学术论文', 'research.patents': '专利申请', 'research.note': '按正式出版年份倒序，保留原始题名与作者顺序。', 'research.application': '申请号', 'research.inventors': '程学云、朱明强等',
-      'credentials.heading': '专业认证', 'contact.heading': '交流想法，一起探索。', 'contact.body': '欢迎交流 AI 应用、智能体工程与量子线路研究。', 'contact.cta': '在 GitHub 找到我', 'footer.top': '回到顶部',
-      'theme.dark': '切换深色模式', 'theme.light': '切换浅色模式', 'menu.close': '关闭导航菜单',
-      'meta.description': '朱明强的个人主页：AI 应用开发、大模型私有化部署、智能体工程与 CNOT 量子线路综合研究。',
-      'paper.open': '阅读论文', 'projects.count': '项经历',
+  "translations": {
+    "zh": {
+      "name": "朱明强",
+      "alternateName": "Mingqiang Zhu",
+      "skip": "跳到正文",
+      "navigation": "主导航",
+      "language": "语言",
+      "menu": "打开导航菜单",
+      "nav.about": "关于",
+      "nav.projects": "项目",
+      "nav.research": "科研",
+      "nav.credentials": "认证",
+      "hero.summary": "研究算法，也让 AI 在实际业务中落地。",
+      "hero.cta": "查看项目经历",
+      "figure.title": "连接约束下的线路综合",
+      "figure.logical": "逻辑线路",
+      "figure.physical": "最近邻分解",
+      "figure.caption": "相同逻辑，适配物理连接。",
+      "figure.topic": "量子线路综合与优化",
+      "figure.link": "了解研究 ↗",
+      "figure.a11yTitle": "CNOT 最近邻综合示意",
+      "figure.a11yDesc": "一个从 q0 控制 q2 的 CNOT 门，等价分解为四个仅在相邻量子位间执行的 CNOT 门。",
+      "about.heading": "从算法研究，走向工程实践。",
+      "about.intro": "关注模型、数据与业务流程之间的连接。",
+      "about.bio": "我是朱明强，在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。",
+      "about.background": "硕士就读于南通大学计算机技术专业，研究物理约束感知的 CNOT 量子线路综合与优化。现在，我把算法分析与系统工程经验用于客服、运维、审计、教育等场景。",
+      "about.dates": "2023.07 至今",
+      "about.company": "中国电信南通分公司",
+      "about.role": "AI 技术经理",
+      "projects.heading": "项目经历",
+      "projects.intro": "从需求拆解、数据处理到部署验证，让技术接入真实工作流程。",
+      "projects.filters": "项目分类",
+      "projects.note": "按年份倒序；同年项目不代表月份先后。",
+      "filter.all": "全部",
+      "filter.ai": "AI 应用",
+      "filter.data": "数据与工程",
+      "filter.quantum": "量子研究",
+      "research.heading": "科研成果",
+      "research.intro": "物理约束感知的 CNOT 量子线路综合、映射与优化。",
+      "research.statement": "在连接与噪声约束下，寻找更好的量子线路。",
+      "research.code": "研究代码",
+      "research.papers": "学术论文",
+      "research.patents": "专利申请",
+      "research.note": "按正式出版年份倒序，保留原始题名与作者顺序。",
+      "research.application": "申请号",
+      "research.inventors": "程学云、朱明强等",
+      "credentials.heading": "专业认证",
+      "contact.heading": "交流想法，一起探索。",
+      "contact.body": "欢迎交流 AI 应用、智能体工程与量子线路研究。",
+      "contact.cta": "在 GitHub 找到我",
+      "footer.top": "回到顶部",
+      "theme.dark": "切换深色模式",
+      "theme.light": "切换浅色模式",
+      "menu.close": "关闭导航菜单",
+      "meta.description": "朱明强的个人主页：AI 应用开发、大模型私有化部署、智能体工程与 CNOT 量子线路综合研究。",
+      "paper.open": "阅读论文",
+      "projects.count": "项经历"
     },
-    en: {
-      name: 'Mingqiang Zhu', alternateName: '朱明强', skip: 'Skip to content', navigation: 'Main navigation', language: 'Language', menu: 'Open navigation menu',
-      'nav.about': 'About', 'nav.projects': 'Projects', 'nav.research': 'Research', 'nav.credentials': 'Credentials',
-      'hero.summary': 'Researching algorithms. Bringing AI into everyday work.', 'hero.cta': 'Explore my projects',
-      'figure.title': 'Circuit synthesis under connectivity constraints', 'figure.logical': 'Logical circuit', 'figure.physical': 'Nearest-neighbor decomposition', 'figure.caption': 'Same logic. Physical connectivity respected.', 'figure.topic': 'Quantum circuit synthesis & optimization', 'figure.link': 'Explore research ↗',
-      'figure.a11yTitle': 'Nearest-neighbor CNOT synthesis', 'figure.a11yDesc': 'A CNOT controlled by q0 and targeting q2 is equivalently decomposed into four CNOT gates acting only on adjacent qubits.',
-      'about.heading': 'From algorithm research to applied engineering.', 'about.intro': 'Connecting models, data, and business workflows.',
-      'about.bio': 'I work on AI technology at China Telecom, Nantong Branch. My work spans use-case analysis, AI agent development, private LLM deployment, and application validation for telecom and enterprise customers.',
-      'about.background': 'My master’s studies in Computer Technology at Nantong University focused on physical constraint-aware CNOT circuit synthesis and optimization. Today, I apply my algorithm and systems experience to customer service, operations, auditing, and education.',
-      'about.dates': 'Jul 2023 – Present', 'about.company': 'China Telecom, Nantong Branch', 'about.role': 'AI Technology Manager',
-      'projects.heading': 'Project experience', 'projects.intro': 'From requirements and data processing to deployment validation, connecting technology with real workflows.', 'projects.filters': 'Project categories', 'projects.note': 'Newest years first. Projects within a year are not ordered by month.',
-      'filter.all': 'All', 'filter.ai': 'AI applications', 'filter.data': 'Data & engineering', 'filter.quantum': 'Quantum research',
-      'research.heading': 'Research', 'research.intro': 'Physical constraint-aware CNOT circuit synthesis, mapping, and optimization.', 'research.statement': 'Finding better circuits under connectivity and noise constraints.', 'research.code': 'Research code', 'research.papers': 'Publications', 'research.patents': 'Patent applications', 'research.note': 'Ordered by publication year, with original titles and author order preserved.', 'research.application': 'Application no.', 'research.inventors': 'Xueyun Cheng, Mingqiang Zhu, et al.',
-      'credentials.heading': 'Professional credentials', 'contact.heading': 'Ideas worth exchanging.', 'contact.body': 'Let’s connect on applied AI, agent engineering, and quantum circuit research.', 'contact.cta': 'Find me on GitHub', 'footer.top': 'Back to top',
-      'theme.dark': 'Switch to dark mode', 'theme.light': 'Switch to light mode', 'menu.close': 'Close navigation menu',
-      'meta.description': 'Mingqiang Zhu: AI application engineering, private LLM deployment, AI agents, and CNOT quantum circuit synthesis research.',
-      'paper.open': 'Read paper', 'projects.count': 'experiences',
-    },
+    "en": {
+      "name": "Mingqiang Zhu",
+      "alternateName": "朱明强",
+      "skip": "Skip to content",
+      "navigation": "Main navigation",
+      "language": "Language",
+      "menu": "Open navigation menu",
+      "nav.about": "About",
+      "nav.projects": "Projects",
+      "nav.research": "Research",
+      "nav.credentials": "Credentials",
+      "hero.summary": "Researching algorithms. Bringing AI into everyday work.",
+      "hero.cta": "Explore my projects",
+      "figure.title": "Circuit synthesis under connectivity constraints",
+      "figure.logical": "Logical circuit",
+      "figure.physical": "Nearest-neighbor decomposition",
+      "figure.caption": "Same logic. Physical connectivity respected.",
+      "figure.topic": "Quantum circuit synthesis & optimization",
+      "figure.link": "Explore research ↗",
+      "figure.a11yTitle": "Nearest-neighbor CNOT synthesis",
+      "figure.a11yDesc": "A CNOT controlled by q0 and targeting q2 is equivalently decomposed into four CNOT gates acting only on adjacent qubits.",
+      "about.heading": "From algorithm research to applied engineering.",
+      "about.intro": "Connecting models, data, and business workflows.",
+      "about.bio": "I work on AI technology at China Telecom, Nantong Branch. My work spans use-case analysis, AI agent development, private LLM deployment, and application validation for telecom and enterprise customers.",
+      "about.background": "My master’s studies in Computer Technology at Nantong University focused on physical constraint-aware CNOT circuit synthesis and optimization. Today, I apply my algorithm and systems experience to customer service, operations, auditing, and education.",
+      "about.dates": "Jul 2023 – Present",
+      "about.company": "China Telecom, Nantong Branch",
+      "about.role": "AI Technology Manager",
+      "projects.heading": "Project experience",
+      "projects.intro": "From requirements and data processing to deployment validation, connecting technology with real workflows.",
+      "projects.filters": "Project categories",
+      "projects.note": "Newest years first. Projects within a year are not ordered by month.",
+      "filter.all": "All",
+      "filter.ai": "AI applications",
+      "filter.data": "Data & engineering",
+      "filter.quantum": "Quantum research",
+      "research.heading": "Research",
+      "research.intro": "Physical constraint-aware CNOT circuit synthesis, mapping, and optimization.",
+      "research.statement": "Finding better circuits under connectivity and noise constraints.",
+      "research.code": "Research code",
+      "research.papers": "Publications",
+      "research.patents": "Patent applications",
+      "research.note": "Ordered by publication year, with original titles and author order preserved.",
+      "research.application": "Application no.",
+      "research.inventors": "Xueyun Cheng, Mingqiang Zhu, et al.",
+      "credentials.heading": "Professional credentials",
+      "contact.heading": "Ideas worth exchanging.",
+      "contact.body": "Let’s connect on applied AI, agent engineering, and quantum circuit research.",
+      "contact.cta": "Find me on GitHub",
+      "footer.top": "Back to top",
+      "theme.dark": "Switch to dark mode",
+      "theme.light": "Switch to light mode",
+      "menu.close": "Close navigation menu",
+      "meta.description": "Mingqiang Zhu: AI application engineering, private LLM deployment, AI agents, and CNOT quantum circuit synthesis research.",
+      "paper.open": "Read paper",
+      "projects.count": "experiences"
+    }
   },
-  expertise: [
-    { number: '01', zh: ['AI 应用与智能体', '工作流编排、知识库问答、信息抽取与工具调用。'], en: ['AI applications & agents', 'Workflow orchestration, knowledge-base Q&A, information extraction, and tool integration.'], tools: 'Dify / Python / FastAPI' },
-    { number: '02', zh: ['模型部署与数据工程', '内网环境适配、推理服务集成与语料质量管理。'], en: ['Model deployment & data', 'Private-network adaptation, inference integration, and corpus quality management.'], tools: 'Docker / Ascend / SQL' },
-    { number: '03', zh: ['量子线路综合与优化', '结合图与矩阵方法，研究物理约束下的线路映射。'], en: ['Quantum circuit optimization', 'Graph and matrix methods for circuit mapping under physical constraints.'], tools: 'CNOT / Steiner tree / PyZX' },
+  "expertise": [
+    {
+      "number": "01",
+      "zh": [
+        "AI 应用与智能体",
+        "工作流编排、知识库问答、信息抽取与工具调用。"
+      ],
+      "en": [
+        "AI applications & agents",
+        "Workflow orchestration, knowledge-base Q&A, information extraction, and tool integration."
+      ],
+      "tools": "Dify / Python / FastAPI"
+    },
+    {
+      "number": "02",
+      "zh": [
+        "模型部署与数据工程",
+        "内网环境适配、推理服务集成与语料质量管理。"
+      ],
+      "en": [
+        "Model deployment & data",
+        "Private-network adaptation, inference integration, and corpus quality management."
+      ],
+      "tools": "Docker / Ascend / SQL"
+    },
+    {
+      "number": "03",
+      "zh": [
+        "量子线路综合与优化",
+        "结合图与矩阵方法，研究物理约束下的线路映射。"
+      ],
+      "en": [
+        "Quantum circuit optimization",
+        "Graph and matrix methods for circuit mapping under physical constraints."
+      ],
+      "tools": "CNOT / Steiner tree / PyZX"
+    }
   ],
-  projects: [
-    { id: 'dialect', year: '2026', category: ['ai', 'data'],
-      zh: { title: '地方方言大模型语料建设', subtitle: '从标注规范到交叉质检，支撑语音模型场景适配。', body: '组织方言语料准备、标注任务分配与交叉质检，梳理音文一致性、噪声、方言和角色标记等质量规则。针对热线对话角色分离问题推进人工纠偏与数据反馈，支撑供应商训练及场景验证。', role: '语料组织 · 标注质检 · 场景验证' },
-      en: { title: 'Local-dialect corpus development', subtitle: 'Annotation standards and cross-checks for speech-model adaptation.', body: 'Organized corpus preparation, annotation assignments, and cross-checking. Defined quality rules for audio–text consistency, noise, dialect, and speaker labels. Coordinated manual corrections and feedback for hotline speaker-separation issues to support vendor training and use-case validation.', role: 'Corpus coordination · Annotation QA · Validation' }, tags: ['Speech data', 'Annotation QA', 'Data quality'] },
-    { id: 'audit', year: '2026', category: ['ai'],
-      zh: { title: '面向审计业务的批量核验智能体', subtitle: '将模型工作流与发票查验、许可证查询工具连接。', body: '部署 Dify 并开发测试批量发票查验智能体；编写企业标识解析与许可证接口查询逻辑，将模型工作流和外部业务工具结合，支持结构化核验及异常结果处理。', role: '工作流开发 · 外部工具调用 · 数据核验' },
-      en: { title: 'Batch verification agents for auditing', subtitle: 'Connecting model workflows with invoice and license verification tools.', body: 'Deployed Dify and developed and tested a batch invoice-verification agent. Implemented enterprise-identifier parsing and license-query integrations, connecting model workflows with external tools for structured verification and exception handling.', role: 'Workflow development · Tool integration · Verification' }, tags: ['Dify', 'API integration', 'Structured output'] },
-    { id: 'education', year: '2026', category: ['ai'],
-      zh: { title: '高校智能辅导员知识问答', subtitle: '完成校内平台部署、智能体迁移与知识库测试。', body: '完成高校服务器环境测试、Dify 部署与智能辅导员迁移，实现校内访问。参与知识库切片测试、流程编排及公众号接入方案梳理，支撑校园咨询服务场景。', role: '平台部署 · 应用迁移 · 知识库支撑' },
-      en: { title: 'University student-advising assistant', subtitle: 'On-campus deployment, agent migration, and knowledge-base testing.', body: 'Tested the university server environment, deployed Dify, and migrated a student-advising assistant for campus access. Contributed to document-chunking tests, workflow orchestration, and planning for a WeChat Official Account integration.', role: 'Platform deployment · Migration · Knowledge-base support' }, tags: ['Dify', 'Knowledge base', 'Deployment'] },
-    { id: 'rail', year: '2026', category: ['ai', 'data'],
-      zh: { title: '轨道交通 AI 运维与运营辅助', subtitle: '监控问答、客流月报与用户运营三类场景。', body: '参与监控告警、客流月报及用户运营三类 AI 场景的需求拆解与阶段交付。团队原型接入 15 台服务器，支持监控 AI 问答、Word 月报生成和人群筛选；参与客户演示及后续集成评估。', role: '需求分析 · 场景设计 · 阶段交付支撑' },
-      en: { title: 'AI support for rail operations', subtitle: 'Monitoring Q&A, passenger-flow reports, and audience analysis.', body: 'Contributed to requirements and staged delivery for monitoring alerts, monthly passenger-flow reports, and user operations. The team prototype connected 15 servers and supported monitoring Q&A, Word report generation, and audience filtering. Participated in customer demonstrations and integration assessment.', role: 'Requirements · Use-case design · Delivery support' }, tags: ['AI operations', 'Reporting', 'Prototyping'] },
-    { id: 'openclaw', year: '2026', category: ['ai'],
-      zh: { title: 'OpenClaw 企业智能助手', subtitle: '部署指导、定时任务与 AI 资讯推送实践。', body: '指导企业和高校部署 OpenClaw，完成消息平台绑定与定时任务配置。推进 AI 资讯推送智能体的服务器迁移及企业微信群测试，整理操作手册并开展实操分享。', role: '智能体部署 · 任务配置 · 客户赋能' },
-      en: { title: 'OpenClaw enterprise assistants', subtitle: 'Deployment guidance, scheduled tasks, and AI news delivery.', body: 'Guided enterprises and universities through OpenClaw deployment, messaging-platform setup, and scheduled tasks. Supported server migration and enterprise WeChat group testing for an AI news agent; prepared operating guides and practical training.', role: 'Agent deployment · Task setup · Customer enablement' }, tags: ['OpenClaw', 'Scheduling', 'Messaging'] },
-    { id: 'private-llm', year: '2025–2026', category: ['ai'],
-      zh: { title: '政企内网大模型私有化部署', subtitle: '适配昇腾环境，打通推理接口与 Dify 应用。', body: '参与 Linux、Docker 和昇腾 910B 环境适配，使用 vLLM-Ascend 跑通 Qwen 32B 级模型测试。完成模型接口联通、Dify 集成与部署文档整理，支撑内网 AI 应用交付。', role: '模型部署 · 环境适配 · 技术交付' },
-      en: { title: 'Private LLM deployment & inference integration', subtitle: 'Ascend environment adaptation and Dify integration on private networks.', body: 'Contributed to Linux, Docker, and Ascend 910B environment adaptation, running Qwen 32B-class model tests with vLLM-Ascend. Connected inference APIs, integrated Dify, and prepared deployment documentation for private-network AI delivery.', role: 'Model deployment · Environment adaptation · Delivery' }, tags: ['Ascend 910B', 'vLLM-Ascend', 'Qwen', 'Docker'] },
-    { id: 'complaints', year: '2025', category: ['ai', 'data'],
-      zh: { title: '客服申诉分析与相似投诉识别', subtitle: '批量分类与分层聚类，提供可复核的匹配依据。', body: '开发投诉分析智能体及 Python、FastAPI 数据处理流程，实现批量分类、重复统计和结果导出。结合 BERT 句向量与多维相似度开展分层聚类，输出可复核的成员、关键词及匹配依据。', role: 'AI 应用开发 · 文本分析' },
-      en: { title: 'Complaint analysis & similarity detection', subtitle: 'Batch classification and hierarchical clustering with reviewable evidence.', body: 'Developed complaint-analysis agents and Python/FastAPI processing workflows for batch classification, duplicate counts, and exports. Combined BERT sentence embeddings with multiple similarity measures for hierarchical clustering, providing reviewable members, keywords, and matching evidence.', role: 'AI application development · Text analysis' }, tags: ['Python', 'FastAPI', 'BERT', 'Clustering'] },
-    { id: 'support-reports', year: '2025', category: ['ai', 'data'],
-      zh: { title: '装维对话理解与支撑报告生成', subtitle: '从非结构化对话中提取业务字段，辅助报告编写。', body: '设计装维对话的信息抽取规则与结构化输出，通过智能体提取业务类型、支撑现象等字段。清洗图片及 HTML 噪声，明确缺失信息处理方式，支持支撑报告生成与结果复核。', role: '信息抽取 · 提示词设计 · 流程开发' },
-      en: { title: 'Field-service dialogue & support reports', subtitle: 'Extracting business fields from unstructured conversations for reporting.', body: 'Designed extraction rules and structured outputs for installation and maintenance conversations. Used agents to identify business types and support issues, removed image and HTML noise, and defined missing-information handling to support report generation and review.', role: 'Information extraction · Prompt design · Workflows' }, tags: ['LLM', 'Information extraction', 'Reporting'] },
-    { id: 'fiber', year: '2025', category: ['data'],
-      zh: { title: '光缆故障分析与运维流程自动化', subtitle: '关联工单、网络资源与产品状态，梳理故障影响。', body: '围绕光缆抢修场景开发故障管控、光缆段与产品关联页面，打通工单、资源与产品在线状态数据，形成结构化的故障影响信息。', role: '业务数据分析 · 故障管控 · 系统开发' },
-      en: { title: 'Fiber fault analysis & workflow automation', subtitle: 'Connecting work orders, network resources, and product status.', body: 'Developed fault-control and fiber-segment/product association pages for cable repair. Connected work orders, resources, and product online-status data to produce structured information on fault impact.', role: 'Business data analysis · Fault control · Development' }, tags: ['Data integration', 'Operations', 'Automation'] },
-    { id: 'oss', year: '2023–2025', category: ['data'],
-      zh: { title: '运营商业务数据治理与系统支撑', subtitle: 'OSS 上线测试、跨系统数据分析与异常定位。', body: '参与 OSS 3.0 推广上线、版本测试与工单障碍处理，分析业务流程及跨系统关联数据，通过 SQL 定位工单状态与异常环节。', role: '数据处理 · 系统工程 · 运营支撑' },
-      en: { title: 'Telecom data & systems support', subtitle: 'OSS rollout, cross-system analysis, and exception diagnosis.', body: 'Contributed to OSS 3.0 rollout, release testing, and work-order troubleshooting. Analyzed business workflows and cross-system data, using SQL to identify work-order states and process exceptions.', role: 'Data processing · Systems engineering · Operations support' }, tags: ['OSS 3.0', 'SQL', 'Process analysis'] },
-    { id: 'cnot', year: '2021.03–2023.06', category: ['quantum'],
-      zh: { title: 'CNOT 量子线路约束优化', subtitle: '物理约束感知的初始映射、线路综合与算法验证。', body: '独立负责相关算法研究与实验验证，围绕架构连接约束、线路并行度与门错误率，研究 CNOT 线路初始映射、约束综合及优化。将线路表示为二进制可逆矩阵和图结构。硕士论文进一步实现了线路综合与可视化系统。', role: '算法研究 · 图与矩阵建模 · 实验验证' },
-      en: { title: 'Constraint-aware CNOT circuit optimization', subtitle: 'Initial mapping, circuit synthesis, and algorithm validation.', body: 'Independently conducted algorithm research and experimental validation on CNOT circuit mapping and synthesis under connectivity, parallelism, and gate-error constraints. Represented circuits with binary reversible matrices and graphs. My master’s thesis also implemented a synthesis and visualization system.', role: 'Algorithm research · Graph & matrix modeling · Validation' }, tags: ['CNOT', 'Steiner tree', 'Matrix transformation', 'PyZX'] },
+  "projects": [
+    {
+      "id": "dialect",
+      "category": [
+        "ai",
+        "data"
+      ],
+      "zh": {
+        "title": "地方方言大模型语料建设",
+        "subtitle": "从标注规范到交叉质检，支撑语音模型场景适配。",
+        "body": "组织方言语料准备、标注任务分配与交叉质检，梳理音文一致性、噪声、方言和角色标记等质量规则。针对热线对话角色分离问题推进人工纠偏与数据反馈，支撑供应商训练及场景验证。",
+        "role": "语料组织 · 标注质检 · 场景验证"
+      },
+      "en": {
+        "title": "Local-dialect corpus development",
+        "subtitle": "Annotation standards and cross-checks for speech-model adaptation.",
+        "body": "Organized corpus preparation, annotation assignments, and cross-checking. Defined quality rules for audio–text consistency, noise, dialect, and speaker labels. Coordinated manual corrections and feedback for hotline speaker-separation issues to support vendor training and use-case validation.",
+        "role": "Corpus coordination · Annotation QA · Validation"
+      },
+      "tags": [
+        "Speech data",
+        "Annotation QA",
+        "Data quality"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "cvSelected": true
+    },
+    {
+      "id": "audit",
+      "category": [
+        "ai"
+      ],
+      "zh": {
+        "title": "面向审计业务的批量核验智能体",
+        "subtitle": "将模型工作流与发票查验、许可证查询工具连接。",
+        "body": "部署 Dify 并开发测试批量发票查验智能体；编写企业标识解析与许可证接口查询逻辑，将模型工作流和外部业务工具结合，支持结构化核验及异常结果处理。",
+        "role": "工作流开发 · 外部工具调用 · 数据核验"
+      },
+      "en": {
+        "title": "Batch verification agents for auditing",
+        "subtitle": "Connecting model workflows with invoice and license verification tools.",
+        "body": "Deployed Dify and developed and tested a batch invoice-verification agent. Implemented enterprise-identifier parsing and license-query integrations, connecting model workflows with external tools for structured verification and exception handling.",
+        "role": "Workflow development · Tool integration · Verification"
+      },
+      "tags": [
+        "Dify",
+        "API integration",
+        "Structured output"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "cvSelected": false
+    },
+    {
+      "id": "education",
+      "category": [
+        "ai"
+      ],
+      "zh": {
+        "title": "高校智能辅导员知识问答",
+        "subtitle": "完成校内平台部署、智能体迁移与知识库测试。",
+        "body": "完成高校服务器环境测试、Dify 部署与智能辅导员迁移，实现校内访问。参与知识库切片测试、流程编排及公众号接入方案梳理，支撑校园咨询服务场景。",
+        "role": "平台部署 · 应用迁移 · 知识库支撑"
+      },
+      "en": {
+        "title": "University student-advising assistant",
+        "subtitle": "On-campus deployment, agent migration, and knowledge-base testing.",
+        "body": "Tested the university server environment, deployed Dify, and migrated a student-advising assistant for campus access. Contributed to document-chunking tests, workflow orchestration, and planning for a WeChat Official Account integration.",
+        "role": "Platform deployment · Migration · Knowledge-base support"
+      },
+      "tags": [
+        "Dify",
+        "Knowledge base",
+        "Deployment"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "cvSelected": false
+    },
+    {
+      "id": "rail",
+      "category": [
+        "ai",
+        "data"
+      ],
+      "zh": {
+        "title": "轨道交通 AI 运维与运营辅助",
+        "subtitle": "监控问答、客流月报与用户运营三类场景。",
+        "body": "参与监控告警、客流月报及用户运营三类 AI 场景的需求拆解与阶段交付。团队原型接入 15 台服务器，支持监控 AI 问答、Word 月报生成和人群筛选；参与客户演示及后续集成评估。",
+        "role": "需求分析 · 场景设计 · 阶段交付支撑"
+      },
+      "en": {
+        "title": "AI support for rail operations",
+        "subtitle": "Monitoring Q&A, passenger-flow reports, and audience analysis.",
+        "body": "Contributed to requirements and staged delivery for monitoring alerts, monthly passenger-flow reports, and user operations. The team prototype connected 15 servers and supported monitoring Q&A, Word report generation, and audience filtering. Participated in customer demonstrations and integration assessment.",
+        "role": "Requirements · Use-case design · Delivery support"
+      },
+      "tags": [
+        "AI operations",
+        "Reporting",
+        "Prototyping"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "cvSelected": true
+    },
+    {
+      "id": "openclaw",
+      "category": [
+        "ai"
+      ],
+      "zh": {
+        "title": "OpenClaw 企业智能助手",
+        "subtitle": "部署指导、定时任务与 AI 资讯推送实践。",
+        "body": "指导企业和高校部署 OpenClaw，完成消息平台绑定与定时任务配置。推进 AI 资讯推送智能体的服务器迁移及企业微信群测试，整理操作手册并开展实操分享。",
+        "role": "智能体部署 · 任务配置 · 客户赋能"
+      },
+      "en": {
+        "title": "OpenClaw enterprise assistants",
+        "subtitle": "Deployment guidance, scheduled tasks, and AI news delivery.",
+        "body": "Guided enterprises and universities through OpenClaw deployment, messaging-platform setup, and scheduled tasks. Supported server migration and enterprise WeChat group testing for an AI news agent; prepared operating guides and practical training.",
+        "role": "Agent deployment · Task setup · Customer enablement"
+      },
+      "tags": [
+        "OpenClaw",
+        "Scheduling",
+        "Messaging"
+      ],
+      "start": "2026",
+      "end": "2026",
+      "cvSelected": false
+    },
+    {
+      "id": "private-llm",
+      "category": [
+        "ai"
+      ],
+      "zh": {
+        "title": "政企内网大模型私有化部署",
+        "subtitle": "适配昇腾环境，打通推理接口与 Dify 应用。",
+        "body": "参与 Linux、Docker 和昇腾 910B 环境适配，使用 vLLM-Ascend 跑通 Qwen 32B 级模型测试。完成模型接口联通、Dify 集成与部署文档整理，支撑内网 AI 应用交付。",
+        "role": "模型部署 · 环境适配 · 技术交付"
+      },
+      "en": {
+        "title": "Private LLM deployment & inference integration",
+        "subtitle": "Ascend environment adaptation and Dify integration on private networks.",
+        "body": "Contributed to Linux, Docker, and Ascend 910B environment adaptation, running Qwen 32B-class model tests with vLLM-Ascend. Connected inference APIs, integrated Dify, and prepared deployment documentation for private-network AI delivery.",
+        "role": "Model deployment · Environment adaptation · Delivery"
+      },
+      "tags": [
+        "Ascend 910B",
+        "vLLM-Ascend",
+        "Qwen",
+        "Docker"
+      ],
+      "start": "2025",
+      "end": "2026",
+      "cvSelected": true
+    },
+    {
+      "id": "complaints",
+      "category": [
+        "ai",
+        "data"
+      ],
+      "zh": {
+        "title": "客服申诉分析与相似投诉识别",
+        "subtitle": "批量分类与分层聚类，提供可复核的匹配依据。",
+        "body": "开发投诉分析智能体及 Python、FastAPI 数据处理流程，实现批量分类、重复统计和结果导出。结合 BERT 句向量与多维相似度开展分层聚类，输出可复核的成员、关键词及匹配依据。",
+        "role": "AI 应用开发 · 文本分析"
+      },
+      "en": {
+        "title": "Complaint analysis & similarity detection",
+        "subtitle": "Batch classification and hierarchical clustering with reviewable evidence.",
+        "body": "Developed complaint-analysis agents and Python/FastAPI processing workflows for batch classification, duplicate counts, and exports. Combined BERT sentence embeddings with multiple similarity measures for hierarchical clustering, providing reviewable members, keywords, and matching evidence.",
+        "role": "AI application development · Text analysis"
+      },
+      "tags": [
+        "Python",
+        "FastAPI",
+        "BERT",
+        "Clustering"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "cvSelected": true
+    },
+    {
+      "id": "support-reports",
+      "category": [
+        "ai",
+        "data"
+      ],
+      "zh": {
+        "title": "装维对话理解与支撑报告生成",
+        "subtitle": "从非结构化对话中提取业务字段，辅助报告编写。",
+        "body": "设计装维对话的信息抽取规则与结构化输出，通过智能体提取业务类型、支撑现象等字段。清洗图片及 HTML 噪声，明确缺失信息处理方式，支持支撑报告生成与结果复核。",
+        "role": "信息抽取 · 提示词设计 · 流程开发"
+      },
+      "en": {
+        "title": "Field-service dialogue & support reports",
+        "subtitle": "Extracting business fields from unstructured conversations for reporting.",
+        "body": "Designed extraction rules and structured outputs for installation and maintenance conversations. Used agents to identify business types and support issues, removed image and HTML noise, and defined missing-information handling to support report generation and review.",
+        "role": "Information extraction · Prompt design · Workflows"
+      },
+      "tags": [
+        "LLM",
+        "Information extraction",
+        "Reporting"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "cvSelected": false
+    },
+    {
+      "id": "fiber",
+      "category": [
+        "data"
+      ],
+      "zh": {
+        "title": "光缆故障分析与运维流程自动化",
+        "subtitle": "关联工单、网络资源与产品状态，梳理故障影响。",
+        "body": "围绕光缆抢修场景开发故障管控、光缆段与产品关联页面，打通工单、资源与产品在线状态数据，形成结构化的故障影响信息。",
+        "role": "业务数据分析 · 故障管控 · 系统开发"
+      },
+      "en": {
+        "title": "Fiber fault analysis & workflow automation",
+        "subtitle": "Connecting work orders, network resources, and product status.",
+        "body": "Developed fault-control and fiber-segment/product association pages for cable repair. Connected work orders, resources, and product online-status data to produce structured information on fault impact.",
+        "role": "Business data analysis · Fault control · Development"
+      },
+      "tags": [
+        "Data integration",
+        "Operations",
+        "Automation"
+      ],
+      "start": "2025",
+      "end": "2025",
+      "cvSelected": false
+    },
+    {
+      "id": "oss",
+      "category": [
+        "data"
+      ],
+      "zh": {
+        "title": "运营商业务数据治理与系统支撑",
+        "subtitle": "OSS 上线测试、跨系统数据分析与异常定位。",
+        "body": "参与 OSS 3.0 推广上线、版本测试与工单障碍处理，分析业务流程及跨系统关联数据，通过 SQL 定位工单状态与异常环节。",
+        "role": "数据处理 · 系统工程 · 运营支撑"
+      },
+      "en": {
+        "title": "Telecom data & systems support",
+        "subtitle": "OSS rollout, cross-system analysis, and exception diagnosis.",
+        "body": "Contributed to OSS 3.0 rollout, release testing, and work-order troubleshooting. Analyzed business workflows and cross-system data, using SQL to identify work-order states and process exceptions.",
+        "role": "Data processing · Systems engineering · Operations support"
+      },
+      "tags": [
+        "OSS 3.0",
+        "SQL",
+        "Process analysis"
+      ],
+      "start": "2023",
+      "end": "2025",
+      "cvSelected": false
+    },
+    {
+      "id": "cnot",
+      "category": [
+        "quantum"
+      ],
+      "zh": {
+        "title": "CNOT 量子线路约束优化",
+        "subtitle": "物理约束感知的初始映射、线路综合与算法验证。",
+        "body": "独立负责相关算法研究与实验验证，围绕架构连接约束、线路并行度与门错误率，研究 CNOT 线路初始映射、约束综合及优化。将线路表示为二进制可逆矩阵和图结构。硕士论文进一步实现了线路综合与可视化系统。",
+        "role": "算法研究 · 图与矩阵建模 · 实验验证"
+      },
+      "en": {
+        "title": "Constraint-aware CNOT circuit optimization",
+        "subtitle": "Initial mapping, circuit synthesis, and algorithm validation.",
+        "body": "Independently conducted algorithm research and experimental validation on CNOT circuit mapping and synthesis under connectivity, parallelism, and gate-error constraints. Represented circuits with binary reversible matrices and graphs. My master’s thesis also implemented a synthesis and visualization system.",
+        "role": "Algorithm research · Graph & matrix modeling · Validation"
+      },
+      "tags": [
+        "CNOT",
+        "Steiner tree",
+        "Matrix transformation",
+        "PyZX"
+      ],
+      "start": "2021-03",
+      "end": "2023-06",
+      "cvSelected": false
+    }
   ],
-  papers: [
-    { year: '2025', title: 'Nearest-neighbor synthesis of controlled-NOT circuits on general quantum architectures', url: 'https://doi.org/10.1103/13m1-y3br', authors: 'Xinyu Chen*, Mingqiang Zhu*, Xueyun Cheng, Zhijin Guan, Shiguang Feng, Pengcheng Zhu', venue: 'Physical Review A 111(6), 062617 (2025)', role: { zh: '共同第一作者', en: 'Co-first author' }, note: { zh: '2025.06.17 正式发表 · * 同等贡献', en: 'Published Jun 17, 2025 · * Equal contribution' }, description: { zh: '关键量子比特优先映射、禁忌搜索与噪声感知综合，面向一般量子架构。', en: 'Key-qubit priority mapping, tabu search, and noise-aware synthesis for general architectures.' } },
-    { year: '2023', title: '面向可靠性的 CNOT 量子线路最近邻综合', url: 'https://doi.org/10.3969/j.issn.1007-5461.2023.04.015', authors: '朱明强, 申文杰, 牛义仁, 张超, 程学云, 管致锦, 陈亮', venue: '量子电子学报 40(4), 560–569 (2023)', role: { zh: '第一作者', en: 'First author' }, note: { zh: '2023 年 7 月刊', en: 'July 2023 issue · Original publication in Chinese' }, description: { zh: '以相邻量子位交互错误率加权，研究基于 Steiner 树的噪声感知综合。', en: 'Noise-aware Steiner-tree synthesis weighted by adjacent-qubit interaction error rates.' } },
-    { year: '2023', title: 'Physical constraint-aware CNOT quantum circuit synthesis and optimization', url: 'https://doi.org/10.1007/s11128-022-03716-1', authors: 'Mingqiang Zhu, Xueyun Cheng, Pengcheng Zhu, Liang Chen, Zhijin Guan', venue: 'Quantum Information Processing 22, Article 10 (2023)', role: { zh: '第一作者', en: 'First author' }, note: { zh: '2022.12.08 在线发表 · 2023 卷年', en: 'Online Dec 8, 2022 · 2023 volume year' }, description: { zh: '结合加权 Steiner 树与布尔矩阵变换，优化最近邻约束下的 CNOT 线路。', en: 'Weighted Steiner trees and Boolean matrix transformations for physically constrained circuit optimization.' } },
-    { year: '2022', title: 'Nearest Neighbor Synthesis of CNOT Circuit Based on Matrix Transformation', url: 'https://doi.org/10.1007/978-3-030-89698-0_16', authors: 'Xueyun Cheng, Mingqiang Zhu, Xiang Li, Zhijin Guan', venue: 'ICNC-FSKD 2021 · LNDECT 89, 150–156 (2022)', role: { zh: '第二作者', en: 'Second author' }, note: { zh: '2022.01.04 出版 · 会议届次 2021', en: 'Published Jan 4, 2022 · ICNC-FSKD 2021 proceedings' }, description: { zh: '布尔矩阵转置、中心翻转与并行计算，用于降低最近邻线路代价。', en: 'Matrix transposition, central flipping, and parallel computation for lower-cost nearest-neighbor circuits.' } },
+  "papers": [
+    {
+      "title": "Nearest-neighbor synthesis of controlled-NOT circuits on general quantum architectures",
+      "url": "https://doi.org/10.1103/13m1-y3br",
+      "authors": [
+        {
+          "name": "Xinyu Chen",
+          "self": false,
+          "coFirst": true,
+          "corresponding": false
+        },
+        {
+          "name": "Mingqiang Zhu",
+          "self": true,
+          "coFirst": true,
+          "corresponding": false
+        },
+        {
+          "name": "Xueyun Cheng",
+          "self": false,
+          "coFirst": false,
+          "corresponding": true
+        },
+        {
+          "name": "Zhijin Guan",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Shiguang Feng",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Pengcheng Zhu",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        }
+      ],
+      "venue": "Physical Review A 111(6), 062617 (2025)",
+      "note": {
+        "zh": "2025.06.17 正式发表",
+        "en": "Published Jun 17, 2025"
+      },
+      "description": {
+        "zh": "关键量子比特优先映射、禁忌搜索与噪声感知综合，面向一般量子架构。",
+        "en": "Key-qubit priority mapping, tabu search, and noise-aware synthesis for general architectures."
+      },
+      "id": "pra-2025",
+      "published": "2025-06-17",
+      "online": ""
+    },
+    {
+      "title": "面向可靠性的 CNOT 量子线路最近邻综合",
+      "url": "https://doi.org/10.3969/j.issn.1007-5461.2023.04.015",
+      "authors": [
+        {
+          "name": "朱明强",
+          "self": true,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "申文杰",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "牛义仁",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "张超",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "程学云",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "管致锦",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "陈亮",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        }
+      ],
+      "venue": "量子电子学报 40(4), 560–569 (2023)",
+      "note": {
+        "zh": "2023 年 7 月刊",
+        "en": "July 2023 issue · Original publication in Chinese"
+      },
+      "description": {
+        "zh": "以相邻量子位交互错误率加权，研究基于 Steiner 树的噪声感知综合。",
+        "en": "Noise-aware Steiner-tree synthesis weighted by adjacent-qubit interaction error rates."
+      },
+      "id": "cjqe-2023",
+      "published": "2023-07",
+      "online": ""
+    },
+    {
+      "title": "Physical constraint-aware CNOT quantum circuit synthesis and optimization",
+      "url": "https://doi.org/10.1007/s11128-022-03716-1",
+      "authors": [
+        {
+          "name": "Mingqiang Zhu",
+          "self": true,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Xueyun Cheng",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Pengcheng Zhu",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Liang Chen",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Zhijin Guan",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        }
+      ],
+      "venue": "Quantum Information Processing 22, Article 10 (2023)",
+      "note": {
+        "zh": "2023 卷年",
+        "en": "2023 volume year"
+      },
+      "description": {
+        "zh": "结合加权 Steiner 树与布尔矩阵变换，优化最近邻约束下的 CNOT 线路。",
+        "en": "Weighted Steiner trees and Boolean matrix transformations for physically constrained circuit optimization."
+      },
+      "id": "qip-2023",
+      "published": "2023",
+      "online": "2022-12-08"
+    },
+    {
+      "title": "Nearest Neighbor Synthesis of CNOT Circuit Based on Matrix Transformation",
+      "url": "https://doi.org/10.1007/978-3-030-89698-0_16",
+      "authors": [
+        {
+          "name": "Xueyun Cheng",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Mingqiang Zhu",
+          "self": true,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Xiang Li",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        },
+        {
+          "name": "Zhijin Guan",
+          "self": false,
+          "coFirst": false,
+          "corresponding": false
+        }
+      ],
+      "venue": "ICNC-FSKD 2021 · LNDECT 89, 150–156 (2022)",
+      "note": {
+        "zh": "2022.01.04 出版 · 会议届次 2021",
+        "en": "Published Jan 4, 2022 · ICNC-FSKD 2021 proceedings"
+      },
+      "description": {
+        "zh": "布尔矩阵转置、中心翻转与并行计算，用于降低最近邻线路代价。",
+        "en": "Matrix transposition, central flipping, and parallel computation for lower-cost nearest-neighbor circuits."
+      },
+      "id": "icnc-2022",
+      "published": "2022-01-04",
+      "online": ""
+    }
   ],
-  patents: [
-    { year: '2022', number: '202210588794.2', zh: '基于多矩阵变换的 CNOT 量子线路最近邻综合优化方法', en: 'Nearest-neighbor CNOT synthesis optimization based on multiple matrix transformations' },
-    { year: '2021', number: '202110823882.1', zh: '量子位交互错误感知的 CNOT 线路最近邻综合方法', en: 'Qubit interaction error-aware nearest-neighbor CNOT circuit synthesis' },
-    { year: '2020', number: '202011259245.8', zh: '一种用于可逆电路优化的可逆门等价变换方法', en: 'Equivalent reversible-gate transformations for reversible circuit optimization' },
+  "patents": [
+    {
+      "number": "202210588794.2",
+      "zh": "基于多矩阵变换的 CNOT 量子线路最近邻综合优化方法",
+      "en": "Nearest-neighbor CNOT synthesis optimization based on multiple matrix transformations",
+      "id": "patent-0",
+      "applied": "2022",
+      "inventors": {
+        "zh": "程学云、朱明强等",
+        "en": "Xueyun Cheng, Mingqiang Zhu, et al."
+      }
+    },
+    {
+      "number": "202110823882.1",
+      "zh": "量子位交互错误感知的 CNOT 线路最近邻综合方法",
+      "en": "Qubit interaction error-aware nearest-neighbor CNOT circuit synthesis",
+      "id": "patent-1",
+      "applied": "2021",
+      "inventors": {
+        "zh": "程学云、朱明强等",
+        "en": "Xueyun Cheng, Mingqiang Zhu, et al."
+      }
+    },
+    {
+      "number": "202011259245.8",
+      "zh": "一种用于可逆电路优化的可逆门等价变换方法",
+      "en": "Equivalent reversible-gate transformations for reversible circuit optimization",
+      "id": "patent-2",
+      "applied": "2020",
+      "inventors": {
+        "zh": "程学云、朱明强等",
+        "en": "Xueyun Cheng, Mingqiang Zhu, et al."
+      }
+    }
   ],
-  credentials: [
-    { mark: 'SD', zh: { title: '软件设计师', subtitle: '计算机技术与软件专业技术资格' }, en: { title: 'Software Designer', subtitle: 'Computer Technology and Software Professional Qualification' } },
-    { mark: 'AI', zh: { title: '人工智能训练师', subtitle: '专业技能证书' }, en: { title: 'AI Trainer', subtitle: 'Professional skills certificate' } },
-    { mark: 'HCIP', zh: { title: 'HCIP-AI', subtitle: 'Huawei Certification AI Solution Architect' }, en: { title: 'HCIP-AI', subtitle: 'Huawei Certification AI Solution Architect' } },
+  "credentials": [
+    {
+      "mark": "SD",
+      "zh": {
+        "title": "软件设计师",
+        "subtitle": "计算机技术与软件专业技术资格"
+      },
+      "en": {
+        "title": "Software Designer",
+        "subtitle": "Computer Technology and Software Professional Qualification"
+      },
+      "id": "credential-0",
+      "date": ""
+    },
+    {
+      "mark": "AI",
+      "zh": {
+        "title": "人工智能训练师",
+        "subtitle": "专业技能证书"
+      },
+      "en": {
+        "title": "AI Trainer",
+        "subtitle": "Professional skills certificate"
+      },
+      "id": "credential-1",
+      "date": ""
+    },
+    {
+      "mark": "HCIP",
+      "zh": {
+        "title": "HCIP-AI",
+        "subtitle": "Huawei Certification AI Solution Architect"
+      },
+      "en": {
+        "title": "HCIP-AI",
+        "subtitle": "Huawei Certification AI Solution Architect"
+      },
+      "id": "credential-2",
+      "date": ""
+    }
   ],
+  "version": 2,
+  "profile": {
+    "github": "https://github.com/M-qiangZhu",
+    "email": "",
+    "researchCode": "https://github.com/M-qiangZhu/Physical-constraint-aware-CNOT-quantum-circuit-synthesis-and-optimization",
+    "zh": {
+      "name": "朱明强",
+      "alternateName": "Mingqiang Zhu",
+      "headline": "AI 应用工程 · 量子线路综合与优化",
+      "summary": "我是朱明强，在中国电信南通分公司从事 AI 技术工作，围绕运营商与政企客户需求，开展场景分析、智能体开发、大模型私有化部署和应用验证。",
+      "background": "硕士就读于南通大学计算机技术专业，研究物理约束感知的 CNOT 量子线路综合与优化。现在，我把算法分析与系统工程经验用于客服、运维、审计、教育等场景。"
+    },
+    "en": {
+      "name": "Mingqiang Zhu",
+      "alternateName": "朱明强",
+      "headline": "AI Engineering · Quantum Circuit Synthesis & Optimization",
+      "summary": "I work on AI technology at China Telecom, Nantong Branch. My work spans use-case analysis, AI agent development, private LLM deployment, and application validation for telecom and enterprise customers.",
+      "background": "My master’s studies in Computer Technology at Nantong University focused on physical constraint-aware CNOT circuit synthesis and optimization. Today, I apply my algorithm and systems experience to customer service, operations, auditing, and education."
+    }
+  },
+  "experience": [
+    {
+      "id": "china-telecom",
+      "start": "2023-07",
+      "end": "present",
+      "zh": {
+        "organization": "中国电信南通分公司",
+        "role": "AI 技术经理",
+        "body": "围绕运营商与政企客户需求，开展场景分析、智能体开发、模型私有化部署与应用验证。结合 Python、FastAPI、SQL 与 Dify 完成数据处理、接口联调、结构化信息提取和交付支持。"
+      },
+      "en": {
+        "organization": "China Telecom, Nantong Branch",
+        "role": "AI Technology Manager",
+        "body": "Use-case analysis, AI agents, private LLM deployment, and application validation for telecom and enterprise customers. Data processing, API integration, structured extraction, and delivery support with Python, FastAPI, SQL, and Dify."
+      }
+    }
+  ]
 };
