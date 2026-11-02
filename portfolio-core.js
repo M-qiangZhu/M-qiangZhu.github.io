@@ -87,6 +87,10 @@
   function readDraft(){try{const raw=localStorage.getItem(DRAFT_KEY);return raw?JSON.parse(raw):null;}catch{return null;}}
   function pageData(base){const preview=new URLSearchParams(location.search).get('preview')==='1';if(!preview)return {data:base,preview:false};const draft=readDraft();if(!draft)return {data:base,preview:false,error:'没有可预览的草稿。'};const errors=validate(draft.data);return errors.length?{data:base,preview:false,error:errors.slice(0,3).join('；')}:{data:draft.data,preview:true};}
   const paragraph = text => escape(text).replace(/\n/g,'<br>');
+  async function latestData(base,fetcher=globalThis.fetch.bind(globalThis)){
+    try{const response=await fetcher('./content.js?fresh='+Date.now(),{cache:'no-store',credentials:'omit',redirect:'error',signal:AbortSignal.timeout(5000)});if(response.ok)return parseImport(await response.text());}catch{}
+    return base;
+  }
   const link = (url,label) => safeURL(url)?`<a href="${escape(safeURL(url))}" target="_blank" rel="noopener noreferrer">${label}</a>`:label;
-  return {DRAFT_KEY,clone,escape,dateValue,sortDated,sortPapers,safeURL,authorRole,authorsHTML,dateLabel,dateRange,validate,parseImport,serialize,readDraft,pageData,paragraph,link};
+  return {DRAFT_KEY,clone,escape,dateValue,sortDated,sortPapers,safeURL,authorRole,authorsHTML,dateLabel,dateRange,validate,parseImport,serialize,readDraft,pageData,paragraph,link,latestData};
 });

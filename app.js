@@ -1,6 +1,6 @@
 'use strict';
-(() => {
- const C=PortfolioCore,V=PortfolioView,result=C.pageData(window.PORTFOLIO),data=result.data;
+(async() => {
+ const C=PortfolioCore,V=PortfolioView,result=C.pageData(await C.latestData(window.PORTFOLIO)),data=result.data;
  let lang;try{lang=localStorage.getItem('mz-language')==='en'?'en':'zh';}catch{lang='zh';}
  const labels={zh:{experience:'工作',projects:'项目',papers:'论文',cv:'简历 / CV',editor:'编辑资料',top:'回到顶部',dark:'深色',light:'浅色'},en:{experience:'Work',projects:'Projects',papers:'Papers',cv:'CV / PDF',editor:'Edit content',top:'Back to top',dark:'Dark',light:'Light'}};
  function updateTheme(){document.querySelector('#theme-toggle').textContent=labels[lang][document.documentElement.dataset.theme==='dark'?'light':'dark'];document.querySelector('#theme-toggle').setAttribute('aria-label',lang==='zh'?'切换浅深主题':'Toggle light/dark theme');}

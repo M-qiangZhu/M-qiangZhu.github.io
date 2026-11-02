@@ -1,9 +1,10 @@
 'use strict';
-(()=>{
- const C=PortfolioCore,E=C.escape,base=C.clone(window.PORTFOLIO),draft=C.readDraft();
+(async()=>{
+ const C=PortfolioCore,E=C.escape,draft=C.readDraft();let base=C.clone(await C.latestData(window.PORTFOLIO));
  const collections=['experience','expertise','projects','papers','patents','credentials'];
  const restorable=draft?.data?.version===2&&draft.data.profile?.zh&&draft.data.profile?.en&&collections.every(k=>Array.isArray(draft.data[k]));
  let state=restorable?draft.data:C.clone(base),active='profile',undoStack=[];
+ let baseline=restorable?(draft.baseData&&!C.validate(draft.baseData).length?draft.baseData:null):C.clone(base),publisher;
  const sections={profile:'基本信息',experience:'工作经历',expertise:'技术能力',projects:'项目经历',papers:'学术论文',patents:'专利申请',credentials:'专业认证'};
  const form=document.querySelector('#editor-form'),status=document.querySelector('#save-status'),errors=document.querySelector('#editor-errors');
  const hints={profile:'仅填写希望公开的信息。邮箱可以留空。',experience:'日期支持 2026、2026-11 或 2026-11-02；持续中请在结束日期填写 present。',expertise:'每项技能分别填写中英文名称与说明。',projects:'项目按结束日期、再按开始日期自动倒序。只知道年份时直接填写年份，不必补月份。勾选“简历精选”可设定默认导出项目。',papers:'按正式出版日期倒序，在线日期单独记录。作者顺序按原文填写；“共同第一”和“通讯作者”分别勾选。',patents:'按申请日期倒序；不推断专利当前授权状态。',credentials:'日期可留空；填入后会自动倒序。'};
@@ -31,7 +32,7 @@
  }
  function showError(message){errors.hidden=false;errors.textContent=message;errors.scrollIntoView({block:'nearest'});}
  function hideError(){errors.hidden=true;errors.textContent='';}
- function save(){try{localStorage.setItem(C.DRAFT_KEY,JSON.stringify({data:state,savedAt:new Date().toISOString()}));status.textContent='草稿已保存在当前浏览器 · '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});return true;}catch{status.textContent='浏览器未能保存草稿，请及时下载备份。';return false;}}
+ function save(){publisher?.notifyDraftChanged();try{localStorage.setItem(C.DRAFT_KEY,JSON.stringify({data:state,baseData:baseline,publication:publisher?.getPublication()||null,savedAt:new Date().toISOString()}));status.textContent='草稿已保存在当前浏览器 · '+new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'});return true;}catch{status.textContent='浏览器未能保存草稿，请及时下载备份。';return false;}}
  function snapshot(){undoStack.push(C.clone(state));if(undoStack.length>15)undoStack.shift();}
  function valid(){const list=C.validate(state);if(list.length){showError('请先检查以下信息：\n'+list.slice(0,15).join('\n'));return false;}hideError();return true;}
  function download(name,text,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
@@ -43,7 +44,7 @@
  form.addEventListener('click',e=>{const el=e.target.closest('button');if(!el)return;if(el.dataset.remove!==undefined){snapshot();state[active].splice(+el.dataset.remove,1);render();save();}else if(el.dataset.addAuthor){snapshot();get(el.dataset.addAuthor).authors.push({name:'',self:false,coFirst:false,corresponding:false});render();save();}else if(el.dataset.removeAuthor!==undefined){snapshot();get(el.dataset.entry).authors.splice(+el.dataset.removeAuthor,1);render();save();}});
  document.querySelector('#add-entry').addEventListener('click',()=>{snapshot();state[active].push(blank(active));render();const cards=form.querySelectorAll('details');cards.forEach(el=>el.open=false);const last=cards[cards.length-1];if(last){last.open=true;last.querySelector('input,textarea')?.focus();}save();});
  document.querySelector('#undo').addEventListener('click',()=>{if(!undoStack.length)return;state=undoStack.pop();render();save();hideError();});
- document.querySelector('#reset-draft').addEventListener('click',()=>{if(!confirm('恢复当前公开版本？当前草稿可以通过“撤销操作”恢复。'))return;snapshot();state=C.clone(base);render();save();hideError();});
+ document.querySelector('#reset-draft').addEventListener('click',()=>{if(!confirm('恢复最近载入的版本？已连接时为 GitHub 版本，否则为页面初始资料。当前草稿可以通过“撤销操作”恢复。'))return;snapshot();state=C.clone(base);render();save();hideError();});
  document.querySelector('#download-script').addEventListener('click',()=>{if(valid())download('content.js',C.serialize(state),'text/javascript;charset=utf-8');});
  document.querySelector('#export-json').addEventListener('click',()=>{if(valid())download('portfolio-backup.json',JSON.stringify(state,null,2),'application/json;charset=utf-8');});
  document.querySelector('#import-json').addEventListener('click',()=>document.querySelector('#import-file').click());
@@ -53,4 +54,5 @@
  document.querySelector('#preview-cv').addEventListener('click',()=>preview('./cv.html?preview=1&lang=zh'));
  document.querySelector('#write-folder').addEventListener('click',async()=>{if(!valid())return;if(!window.showDirectoryPicker){showError('此浏览器不支持直接写回文件夹，请点击“下载发布文件”。');return;}try{const directory=await showDirectoryPicker({mode:'readwrite'});const handle=await directory.getFileHandle('content.js',{create:true});const writable=await handle.createWritable();await writable.write(C.serialize(state));await writable.close();status.textContent='已写回所选目录中的 content.js；公开网站仍需提交 GitHub。';}catch(error){if(error.name!=='AbortError')showError('写回失败：'+error.message);}});
  render();status.textContent=restorable?'已恢复此浏览器保存的草稿。':'已载入公开资料。编辑后将自动保存为本地草稿。';
+ publisher=GitHubEditor.mount({getState:()=>state,getBaseline:()=>baseline,valid,saveDraft:save,initialPublication:restorable?draft.publication:null,onRemote(remote,replace){if(replace){snapshot();state=C.clone(remote.data);render();hideError();}base=C.clone(remote.data);baseline=C.clone(remote.data);}});
 })();

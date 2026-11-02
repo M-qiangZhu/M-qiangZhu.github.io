@@ -1,6 +1,6 @@
 'use strict';
-(()=>{
- const C=PortfolioCore,V=PortfolioView,result=C.pageData(window.PORTFOLIO),data=result.data,params=new URLSearchParams(location.search);let lang=params.get('lang')==='en'?'en':'zh';
+(async()=>{
+ const C=PortfolioCore,V=PortfolioView,result=C.pageData(await C.latestData(window.PORTFOLIO)),data=result.data,params=new URLSearchParams(location.search);let lang=params.get('lang')==='en'?'en':'zh';
  const sections=new Set(['about','experience','skills','projects','papers','patents','credentials']);let selected=new Set(data.projects.filter(p=>p.cvSelected).map(p=>p.id));
  const order=['about','experience','skills','projects','papers','patents','credentials'];
  const copy={zh:{title:'简历导出',back:'返回主页',featured:'精选项目',all:'全部项目',print:'导出 PDF',help:'点击导出后，在浏览器打印窗口选择“另存为 PDF”。建议关闭页眉和页脚。可在下方选择简历章节和项目。',choose:'选择项目',draft:'当前为本地草稿预览，尚未发布。'},en:{title:'Export CV',back:'Back to website',featured:'Featured projects',all:'All projects',print:'Export PDF',help:'Choose “Save as PDF” in your browser’s print dialog. Disable headers and footers for a clean CV. Select sections and projects below.',choose:'Choose projects',draft:'Local draft preview; not published.'}};

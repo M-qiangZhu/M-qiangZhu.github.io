@@ -5,6 +5,14 @@ const vm = require('node:vm');
 const C = fs.existsSync('portfolio-core.js') ? require('../portfolio-core.js') : {};
 const data = () => {const context={window:{}};vm.runInNewContext(fs.readFileSync('content.js','utf8'),context);return JSON.parse(JSON.stringify(context.window.PORTFOLIO));};
 
+test('fresh page data bypasses caches, validates remote content and falls back offline',async()=>{
+ const base=data(),updated=data();updated.profile.en.name='Fresh online name';
+ const fetched=await C.latestData(base,async(url,options)=>{assert.match(url,/content.js\?fresh=/);assert.equal(options.cache,'no-store');assert.equal(options.credentials,'omit');return {ok:true,text:async()=>C.serialize(updated)};});
+ assert.equal(fetched.profile.en.name,'Fresh online name');
+ assert.deepEqual(await C.latestData(base,async()=>{throw new Error('offline');}),base);
+ assert.deepEqual(await C.latestData(base,async()=>({ok:true,text:async()=>'window.alert(1)'})),base);
+});
+
 test('sorts ongoing, ended, tied and undated projects without changing the input',()=>{
  const entries=[{id:'old',start:'2023',end:'2024'},{id:'unknown',start:'',end:''},{id:'year-only',start:'2026',end:'2026'},{id:'exact',start:'2025-02',end:'2026-09'},{id:'ongoing',start:'2024',end:'present'},{id:'same-a',start:'2026',end:'2026'},{id:'same-b',start:'2026',end:'2026'}];
  assert.deepEqual(C.sortDated(entries).map(p=>p.id),['ongoing','exact','year-only','same-a','same-b','old','unknown']);
